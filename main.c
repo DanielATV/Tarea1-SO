@@ -91,8 +91,9 @@ int main(){
             strcat(path, de->d_name);
 
             printf("%s\n",path);
+            rename(de->d_name,path);
             
-            rename("Carta_001.txt","../Carta_001.txt");
+            
 
         } 
        
