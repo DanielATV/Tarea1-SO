@@ -58,13 +58,13 @@ int main(){
     dp = opendir("./");
 
     while ((de = readdir(dp)) != NULL) {
-        printf("%s\n", de->d_name);
 
-        strncpy(test,de->d_name,5);
+        strcpy(test,de->d_name);
 
-        if (strcmp(dummy,test)== 0){
+        if (strlen(test) >=  13){/* si el nombre es muy largo es carta */
             printf("ecnontre carta %s\n",de->d_name);
             fp = fopen(de->d_name,"r");
+            
             for (i =0; i<4; i++){
                 
                 fgets(line,20,fp);
@@ -74,18 +74,15 @@ int main(){
                 else strcpy(joker.num,line);
             }
             fclose(fp);
-
-            /* strcpy(path , "./");
+            
+            strcpy(path , "./");
             strcat(path,joker.ed);
             strcat(path,"/");
             strcat(path,joker.tipo);
             strcat(path,"/");
             strcat(path, de->d_name);
-            rename(de->d_name,path);
-
-            printf(" %s %s\n",de->d_name, path ); */
-
-            rename("Carta1.txt","./Edicion1/Rara/Carta1.txt");
+            
+            rename("Carta_001.txt","../Carta_001.txt");
 
         } 
        
