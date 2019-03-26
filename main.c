@@ -22,27 +22,29 @@ int main(){
     FILE *fp;
     char line[20];
 
+    char path[100];
+
     /*Creacion de directorios*/
     mkdir("Edicion1",0755);
-    mkdir("Edicion1/Normales",0755);
-    mkdir("Edicion1/Magicas",0755);
-    mkdir("Edicion1/Raras",0755);
+    mkdir("Edicion1/Normal",0755);
+    mkdir("Edicion1/Magica",0755);
+    mkdir("Edicion1/Rara",0755);
     mkdir("Edicion2",0755);
-    mkdir("Edicion2/Normales",0755);
-    mkdir("Edicion2/Magicas",0755);
-    mkdir("Edicion2/Raras",0755);
+    mkdir("Edicion2/Normal",0755);
+    mkdir("Edicion2/Magica",0755);
+    mkdir("Edicion2/Rara",0755);
     mkdir("Edicion3",0755);
-    mkdir("Edicion3/Normales",0755);
-    mkdir("Edicion3/Magicas",0755);
-    mkdir("Edicion3/Raras",0755);
+    mkdir("Edicion3/Normal",0755);
+    mkdir("Edicion3/Magica",0755);
+    mkdir("Edicion3/Rara",0755);
     mkdir("Edicion4",0755);
-    mkdir("Edicion4/Normales",0755);
-    mkdir("Edicion4/Magicas",0755);
-    mkdir("Edicion4/Raras",0755);
+    mkdir("Edicion4/Normal",0755);
+    mkdir("Edicion4/Magica",0755);
+    mkdir("Edicion4/Rara",0755);
     mkdir("Edicion5",0755);
-    mkdir("Edicion5/Normales",0755);
-    mkdir("Edicion5/Magicas",0755);
-    mkdir("Edicion5/Raras",0755);
+    mkdir("Edicion5/Normal",0755);
+    mkdir("Edicion5/Magica",0755);
+    mkdir("Edicion5/Rara",0755);
 
     /* Mover las cartas */
 
@@ -50,12 +52,13 @@ int main(){
     char dummy[6] = "Carta";
     char test[6];
 
+
     DIR *dp;
     struct dirent *de;
     dp = opendir("./");
 
     while ((de = readdir(dp)) != NULL) {
-        /*printf("%s\n", de->d_name);*/
+        printf("%s\n", de->d_name);
 
         strncpy(test,de->d_name,5);
 
@@ -72,8 +75,17 @@ int main(){
             }
             fclose(fp);
 
-            printf("%s %s %s %s \n", joker.nom, joker.tipo, joker.ed, joker.num);
-            /* rename("Carta1.txt","./Edicion1/Carta1.txt"); */
+            /* strcpy(path , "./");
+            strcat(path,joker.ed);
+            strcat(path,"/");
+            strcat(path,joker.tipo);
+            strcat(path,"/");
+            strcat(path, de->d_name);
+            rename(de->d_name,path);
+
+            printf(" %s %s\n",de->d_name, path ); */
+
+            rename("Carta1.txt","./Edicion1/Rara/Carta1.txt");
 
         } 
        
