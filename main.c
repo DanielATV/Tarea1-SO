@@ -37,7 +37,7 @@ int main(){
 
     DIR *dp;
     struct dirent *de;
-    dp = opendir("./Cartas");
+    dp = opendir("./");
 
     while ((de = readdir(dp)) != NULL) {
         /*printf("%s\n", de->d_name);*/
@@ -46,7 +46,12 @@ int main(){
 
         printf("%s\n",test);
 
-        if (strcmp(dummy,test)== 0) printf("ecnontre carta\n");
+        if (strcmp(dummy,test)== 0){
+            printf("ecnontre carta %s\n",de->d_name);
+            mkdir("./Otro",0755);
+            rename("Carta1.txt","./Otro/Carta1.txt");
+
+        } 
        
 
     }
