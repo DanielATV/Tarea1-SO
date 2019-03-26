@@ -15,14 +15,17 @@ struct carta{
 
 int main(){
     int i;
+    int largo;
 
     struct carta collection[20];
     struct carta joker;
 
     FILE *fp;
     char line[20];
+    char comp;
 
     char path[100];
+
 
     /*Creacion de directorios*/
     mkdir("Edicion1",0755);
@@ -68,12 +71,17 @@ int main(){
             for (i =0; i<4; i++){
                 
                 fgets(line,20,fp);
+                largo =  strlen(line);
+
+
+                if (line[largo -1]== '\n') line[largo -1] = '\0';
                 if (i== 0) strcpy(joker.nom ,line);
                 else if (i == 1) strcpy(joker.tipo ,line);
                 else if (i == 2) strcpy(joker.ed,line);
                 else strcpy(joker.num,line);
             }
             fclose(fp);
+        
             
             strcpy(path , "./");
             strcat(path,joker.ed);
@@ -81,6 +89,8 @@ int main(){
             strcat(path,joker.tipo);
             strcat(path,"/");
             strcat(path, de->d_name);
+
+            printf("%s\n",path);
             
             rename("Carta_001.txt","../Carta_001.txt");
 
