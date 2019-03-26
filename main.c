@@ -2,6 +2,7 @@
 #include <sys/stat.h>
 #include<unistd.h> 
 #include <dirent.h>
+#include <string.h>
 #include <stdio.h>
 
 int main(){
@@ -28,14 +29,25 @@ int main(){
     mkdir("Edicion5/Magicas",0755);
     mkdir("Edicion5/Raras",0755);
 
+    /* Mover las cartas */
+
+    
+    char dummy[6] = "Carta";
+    char test[6];
 
     DIR *dp;
     struct dirent *de;
-    dp = opendir("./");
+    dp = opendir("./Cartas");
 
     while ((de = readdir(dp)) != NULL) {
-        printf("%s\n", de->d_name);
-        chdir(de->d_name);
+        /*printf("%s\n", de->d_name);*/
+
+        strncpy(test,de->d_name,5);
+
+        printf("%s\n",test);
+
+        if (strcmp(dummy,test)== 0) printf("ecnontre carta\n");
+       
 
     }
     
