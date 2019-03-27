@@ -3,6 +3,7 @@
 #include<unistd.h> 
 #include <dirent.h>
 #include <string.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 struct carta{
@@ -17,7 +18,10 @@ int main(){
     int i;
     int largo;
 
-    struct carta collection[20];
+    struct carta mazo[20];
+
+    /*strcpy(mazo[0].nom,"asd");
+    printf("funciono %s\n",mazo[0].nom); */
     struct carta joker;
 
     FILE *fp;
@@ -25,6 +29,15 @@ int main(){
     char comp;
 
     char path[100];
+    char directorio[100];
+
+    int opcion;
+    int opcion2;
+
+    char camino1 [100];
+    char camino2 [100];
+  
+    int contador;
 
 
     /*Creacion de directorios*/
@@ -101,7 +114,95 @@ int main(){
     }
     
   
-    closedir(dp);  
+    closedir(dp); 
+
+    /* Navegador */
+
+    dp = opendir("./");
+   
+    while(true){
+
+        printf("-------------------\n");
+        printf("Escoger Edicion:\n");
+        printf("1/2/3/4/5\n");
+        printf("6 para salir\n");
+
+        scanf("%d", &opcion);
+
+        if (opcion == 1){
+            strcpy(camino1,"./Edicion1/");
+            while (true){
+                printf("-------------------\n");
+                printf("Escoger Tipo:\n");
+                printf("1.- Magica/ 2.- Normal/ 3.- Rara\n");
+                printf("4 para salir\n");
+                scanf("%d", &opcion2);
+
+                if (opcion2 == 1){
+                    strcpy(camino2,"Magica");
+
+                    strcat(camino1,camino2);
+
+                    dp = opendir(camino1);
+
+                    contador = 0;
+                    while ((de = readdir(dp)) != NULL){
+                        printf("%s\n",de->d_name);
+                        /*
+                        strcpy(test,de->d_name);
+
+                        if (strlen(test) >=  13){
+
+                            fp = fopen(de->d_name,"r");
+                            for (i =0; i<4; i++){
+                                fgets(line,20,fp);
+                                largo =  strlen(line);
+                                if (line[largo -1]== '\n') line[largo -1] = '\0';
+
+
+
+                                
+                                if (i== 0) strcpy(collection[contador].nom ,line);
+                                else if (i == 1) strcpy(collection[contador].tipo ,line);
+                                else if (i == 2) strcpy(collection[contador].ed,line);
+                                else strcpy(collection[contador].num,line);
+                            } 
+                            fclose(fp);
+                            contador ++; 
+                        } */
+
+                    
+                        /* printf("%s\n",collection[0].nom); */
+
+                    }
+                    
+                    
+                }
+            
+
+                else break;
+            }
+        }
+        else if (opcion == 2){
+            chdir("Edicion2");
+        }
+
+        else if (opcion == 3){
+            chdir("Edicion3");
+        }
+
+        else if (opcion == 4) {
+            chdir("Edicion4");
+        }
+
+        else if (opcion == 5){
+            chdir("Edicion5");
+        }
+
+        else break;
+        
+
+    }
 
     return 0;
 }
